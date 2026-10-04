@@ -1,0 +1,52 @@
+[package]
+name = "tbb-workbench"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "TBB Workbench: local desktop workbench for an existing tor-browser-build checkout. Not affiliated with The Tor Project."
+
+[lib]
+name = "tbb_workbench_lib"
+path = "src/lib.rs"
+crate-type = ["staticlib", "cdylib", "rlib"]
+[[bin]]
+name = "tbb-workbench"
+path = "src/main.rs"
+
+[build-dependencies]
+tauri-build = { version = "=2.7.0", features = [] }
+
+[dependencies]
+tbb-core = { path = "../crates/tbb-core" }
+
+# Pinned exactly (not "2" / caret) to match the @tauri-apps/* npm package
+# versions pinned in package.json. Tauri's CLI hard-errors on a mismatch
+# between the JS and Rust package versions, and loose ranges on both sides
+# drift apart independently depending on when `npm install` vs `cargo build`
+# last ran. Bump these and package.json's pins together, deliberately.
+tauri = { version = "=2.12.0", features = [] }
+tauri-plugin-dialog = "=2.8.0"
+tauri-plugin-fs = "=2.6.0"
+tauri-plugin-shell = "=2.4.0"
+tauri-plugin-opener = "=2.7.0"
+obfstr = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["process", "io-util", "rt-multi-thread", "macros", "sync", "time", "fs"] }
+anyhow = "1"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+directories = "5"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
+[profile.release]
+panic = "abort" # Reduces binary size by removing stack unwinding code
+codegen-units = 1 # Allows the compiler to optimize across the whole crate
+lto = true # Enables Link-Time Optimization for a smaller, faster binary
+opt-level = "z" # Optimizes for binary size (use "z" or 3 for performance if preferred)
+strip = true # Strips all debug symbols and tables from the executable

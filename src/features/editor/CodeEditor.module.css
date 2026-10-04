@@ -1,0 +1,29 @@
+.editorHost {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: var(--text-body-tiny);
+  /* Paired with .editorBody { position: relative } in EditorPage: this
+     fills that box exactly, regardless of flex percentage-height quirks.
+     Longhand (not the `inset` shorthand) for the widest possible support. */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.editorHost :global(.cm-editor) {
+  height: 100%;
+}
+
+.editorHost :global(.cm-scroller) {
+  overflow: auto;
+}
+
+.editorHost :global(.cm-gutters) {
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border-right: 1px solid var(--border-subtle);
+}

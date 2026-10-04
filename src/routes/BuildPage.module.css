@@ -1,0 +1,189 @@
+.empty {
+  color: var(--text-secondary);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.modeToggle {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  padding: 2px;
+}
+
+.modeActive,
+.modeInactive {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-label-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modeActive {
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.modeInactive {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.presetArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.panelNote {
+  color: var(--text-secondary);
+  font-size: var(--text-body-tiny);
+  margin: 0;
+}
+
+.targetGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-2);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.targetCard,
+.targetCardActive {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  padding: var(--space-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.targetCardActive {
+  border-color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.targetName {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-label-sm);
+}
+
+.targetHelp {
+  font-size: var(--text-body-tiny);
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.targetMeta {
+  font-size: var(--text-label-tiny);
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.commandRow {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-label-sm);
+  color: var(--text-secondary);
+  flex: 1;
+  min-width: 200px;
+}
+
+.field input {
+  font-family: var(--font-mono);
+  padding: var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+.controls {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.runId {
+  font-family: var(--font-mono);
+  font-size: var(--text-label-tiny);
+  color: var(--text-secondary);
+}
+
+.statsRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.logPane {
+  background: #15111c;
+  color: #f5f0f8;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-body-tiny);
+  max-height: 420px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.logEmpty {
+  color: #8a7f94;
+}
+
+.streamTag {
+  display: inline-block;
+  width: 2.5em;
+  color: #8a7f94;
+}
+
+.stderrLine {
+  color: #f2a7a7;
+}
+
+.stdoutLine {
+  color: inherit;
+}
+
+.warningLine {
+  color: #f0c987;
+}
+
+.errorLine {
+  color: #f2a7a7;
+  font-weight: 600;
+}
+
+.exitSummary {
+  font-size: var(--text-body-tiny);
+  color: var(--text-secondary);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}

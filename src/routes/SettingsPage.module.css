@@ -1,0 +1,53 @@
+.empty {
+  color: var(--text-secondary);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 640px;
+}
+
+.radioRow {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-body-tiny);
+}
+
+.fieldRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-body-tiny);
+  color: var(--text-secondary);
+}
+
+.numberInput {
+  width: 80px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-body-tiny);
+  color: var(--text-secondary);
+}
+
+.aboutText {
+  font-size: var(--text-body-tiny);
+  color: var(--text-secondary);
+  margin: 0;
+}

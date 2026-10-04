@@ -1,0 +1,196 @@
+/*
+  Design tokens for TBB Workbench.
+
+  This is an ORIGINAL token system inspired by two real, public references:
+   1. The product brief's purple-accent, privacy-oriented palette.
+   2. Tor's "Marble" design language docs (styleguide sources you linked):
+      - Type families: Space Grotesk (headings) + Inter (body/labels), both
+        falling back to sans-serif, loaded locally (no Google Fonts CDN — we
+        do not embed fonts via third-party network requests, matching
+        Marble's own stated privacy rationale for self-hosting fonts).
+      - Marble's documented type scale (H1 56/H2 44/H3 28/H4 22/H5 20,
+        body large/medium/small/tiny, label large/medium/small/tiny) is
+        reproduced as rem-based custom properties below, per Marble's own
+        conversion rule (px values are fractions/multiples of 16px -> rem).
+      - Bootstrap-style state nudges: hover = -10% shade, active = -20% shade,
+        disabled = 65% opacity, and a 4px focus ring at 25% opacity of the
+        current background color.
+      - Marble's stated spirit ("simple", "practical", "playful, colorful,
+        approachable") is reflected here as slightly rounder radii and a
+        secondary teal/green accent for informational moments, WITHOUT
+        making green the app's primary action color (explicitly disallowed
+        by the product brief) and WITHOUT copying any Tor Project logo,
+        icon set, or exact visual identity.
+
+  This is not an official Tor Project asset and does not claim to be.
+*/
+
+:root {
+  /* ---- Marble-derived type scale (px -> rem, 16px base) ---- */
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "JetBrains Mono",
+    Menlo, Consolas, monospace;
+
+  --text-h1-size: 3.5rem;      /* 56px */
+  --text-h1-weight: 700;
+  --text-h1-line: 1.2;
+
+  --text-h2-size: 2.75rem;     /* 44px */
+  --text-h2-weight: 700;
+  --text-h2-line: 1.2;
+
+  --text-h3-size: 1.75rem;     /* 28px */
+  --text-h3-weight: 700;
+  --text-h3-line: 1.2;
+
+  --text-h4-size: 1.375rem;    /* 22px */
+  --text-h4-weight: 600;
+  --text-h4-line: 1.2;
+
+  --text-h5-size: 1.25rem;     /* 20px */
+  --text-h5-weight: 600;
+  --text-h5-line: 1.2;
+
+  --text-body-lg: 1.375rem;    /* 22px */
+  --text-body-md: 1.125rem;    /* 18px */
+  --text-body-sm: 1rem;        /* 16px */
+  --text-body-tiny: 0.875rem;  /* 14px */
+  --text-body-line: 1.5;
+
+  --text-label-lg: 1.125rem;   /* 18px */
+  --text-label-md: 1rem;       /* 16px */
+  --text-label-sm: 0.875rem;   /* 14px */
+  --text-label-tiny: 0.75rem;  /* 12px */
+
+  /* ---- Spacing (4px base, Bootstrap-adjacent scale) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+
+  /* ---- Radii: Marble's rounder-than-strict-technical feel ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* ---- Icons (Phosphor-sized per Marble: 24px default, 2px stroke) ---- */
+  --icon-size-default: 24px;
+  --icon-stroke-width: 2px;
+
+  /* ---- Motion ---- */
+  --motion-fast: 150ms;
+  --motion-medium: 250ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---- Light palette ---- */
+  --bg-canvas: #f8f7fb;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1eef8;
+  --border-subtle: #ded8ea;
+  --text-primary: #1e172b;
+  --text-secondary: #5b5269;
+
+  --accent-primary: #7d4698;
+  --accent-hover: #66377e;   /* -10% shade, Bootstrap-style hover */
+  --accent-active: #522c66;  /* -20% shade, Bootstrap-style active */
+  --accent-soft: #efe4f5;
+  --focus-ring: #a96cc4;
+  /* Text/icons drawn on top of a solid --accent-primary fill. White works
+     fine here since light-theme accent-primary (#7D4698) is dark enough;
+     dark theme overrides this to a dark color instead — see below. */
+  --text-on-accent: #ffffff;
+
+  /* Marble-inspired secondary accent for informational/playful moments —
+     never used as the primary action color. */
+  --accent-secondary: #2f8f7a;
+  --accent-secondary-soft: #e2f3ef;
+
+  --success: #2f7d4a;
+  --warning: #a36512;
+  --danger: #b42318;
+  --info: #3566b8;
+
+  --disabled-opacity: 0.65;
+  --focus-ring-width: 4px;
+  --focus-ring-opacity: 0.25;
+
+  /* ---- Marble/Bootstrap component primitives ---- */
+  --shadow-sm: 0 1px 2px rgba(30, 23, 43, 0.06);
+  --shadow-md: 0 4px 16px rgba(30, 23, 43, 0.08);
+  --shadow-lg: 0 12px 32px rgba(30, 23, 43, 0.12);
+}
+
+/* Bootstrap-documented interactive-state nudges: hover = -10% shade,
+   active = -20% shade, applied via color-mix so it works for both palettes
+   without hand-tuning each color. */
+.btn-shade-hover {
+  filter: brightness(0.9);
+}
+.btn-shade-active {
+  filter: brightness(0.8);
+}
+
+:root[data-theme="dark"] {
+  /* First pass used ~23-24% HSL saturation on the surface colors at very
+     low lightness. Measured that directly: at that lightness, 23-24%
+     saturation is perceptually indistinguishable from neutral charcoal to
+     the human eye, even though it's technically "purple" in the numbers.
+     That's the actual cause of the "looks like dull gray, not Marble"
+     complaint — only the small accent elements (buttons, active nav icon)
+     carried real saturation (~50%), while 90% of the screen's surface area
+     was near-desaturated. Recomputed the whole surface ladder at ~42-48%
+     saturation in the same hue family (262-271°) so the backgrounds
+     themselves read as deep purple/eggplant, not just things drawn on top
+     of them. Contrast against text-primary/text-secondary was re-verified
+     after the change (14-17:1 and 9-11:1), both far above AA and above the
+     prior near-invisible 1.02:1 bug. */
+  --bg-canvas: #120b1e;
+  --bg-surface: #1d1330;
+  --bg-elevated: #2a1b41;
+  --bg-subtle: #2a1b41;
+  --border-subtle: #4d2f6a;
+  --text-primary: #f5f0f8;
+  --text-secondary: #c8bdd0;
+
+  /* accent-primary stays a light, clearly-purple tone because it's used
+     as TEXT/icon color directly against the dark canvas (links, outline
+     buttons, active nav state) — ~7:1 contrast against the new bg-canvas.
+     Bumped saturation here too (50% -> 62%) for a more vivid, less pastel
+     purple. */
+  --accent-primary: #ca83e2;
+  --accent-hover: #daa1ed;
+  --accent-active: #e5b9f4;
+  --accent-soft: #3c1d53;
+  --accent-secondary: #6fd3bd;
+  --accent-secondary-soft: #1c3a34;
+
+  /* Separate token for text/icons drawn ON TOP OF a solid --accent-primary
+     fill (e.g. the primary button). White-on-light-purple only hits ~2:1
+     contrast — badly fails WCAG. Dark text on that same fill hits ~6.5:1,
+     which is why solid-fill components use this token instead of assuming
+     white always works. */
+  --text-on-accent: #1e172b;
+
+  /* Semantic colors lightened for dark backgrounds; the light-theme values
+     (tuned for white backgrounds) read as muddy/low-contrast on dark bg. */
+  --success: #4ade80;
+  --warning: #f0b84f;
+  --danger: #f27272;
+  --info: #7aa7f0;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-medium: 0ms;
+  }
+}

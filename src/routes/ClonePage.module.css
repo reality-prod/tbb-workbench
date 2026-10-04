@@ -1,0 +1,75 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 760px;
+}
+
+.lede {
+  color: var(--text-secondary);
+  font-size: var(--text-body-tiny);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-label-sm);
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.field input,
+.field select {
+  font-family: var(--font-mono);
+  padding: var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+.refRow {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-body-tiny);
+  color: var(--text-secondary);
+}
+
+.destRow {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.destInput {
+  flex: 1;
+  font-family: var(--font-mono);
+  padding: var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+.logPane {
+  background: #15111c;
+  color: #f5f0f8;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-body-tiny);
+  max-height: 300px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.exitSummary {
+  font-size: var(--text-body-tiny);
+  color: var(--text-secondary);
+}

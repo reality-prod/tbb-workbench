@@ -1,0 +1,42 @@
+.empty {
+  color: var(--text-secondary);
+  font-size: var(--text-body-tiny);
+}
+
+.diff {
+  font-family: var(--font-mono);
+  font-size: var(--text-body-tiny);
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) 0;
+  max-height: 420px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.context,
+.insert,
+.delete {
+  padding: 0 var(--space-3);
+}
+
+.marker {
+  display: inline-block;
+  width: 1.5em;
+  color: var(--text-secondary);
+}
+
+.insert {
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  color: var(--success);
+}
+
+.delete {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  color: var(--danger);
+}
+
+.context {
+  color: var(--text-secondary);
+}

@@ -1,0 +1,235 @@
+.empty {
+  color: var(--text-secondary);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.layout {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-3);
+  /* min-height:0 overrides the default min-height:auto that flex items get
+     (which otherwise means "never shrink below my content's natural
+     size") — without it, a long open file would force this whole row,
+     and everything above it up to the page root, to grow to fit the file
+     instead of clipping to the available window height. */
+  min-height: 0;
+  overflow: hidden;
+}
+
+.treeColumn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--text-body-tiny);
+  color: var(--text-primary);
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.treeBody {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.editorColumn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  min-width: 0;
+  min-height: 0;
+  /* Without this, the column's box grows to fit the full file's rendered
+     height instead of clipping to the row's height — same class of bug
+     as the min-height issue above. */
+  overflow: hidden;
+  flex: 1;
+}
+
+.tabStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-1);
+  flex-shrink: 0;
+}
+
+.tabItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  padding: 2px 4px 2px 8px;
+  max-width: 180px;
+}
+
+.tabItemActive {
+  background: var(--accent-soft);
+}
+
+.tabSelect {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--text-label-tiny);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 2px 0;
+}
+
+.tabItemActive .tabSelect {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.tabDirtyDot {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.tabClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.tabClose:hover {
+  background: var(--bg-canvas);
+  color: var(--danger);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.emptyEditor {
+  color: var(--text-secondary);
+  font-size: var(--text-body-tiny);
+  padding: var(--space-3);
+}
+
+.editorToolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.activePath {
+  font-family: var(--font-mono);
+  font-size: var(--text-label-sm);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.protectedTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-label-tiny);
+  color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 14%, transparent);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.editorBody {
+  flex: 1;
+  min-height: 0;
+  /* position:relative + the child using position:absolute;inset:0 (see
+     CodeEditor.module.css) is a harder guarantee of "fill exactly this
+     box and clip the rest" than height:100% cascaded through several
+     nested flex levels — some older WebKit-family engines have had bugs
+     resolving percentage heights through deep flex chains. This pattern
+     doesn't depend on that at all: the child is sized directly against
+     this element's own box, full stop. */
+  position: relative;
+}
+
+.inspectorColumn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.inspectorBodyWrap {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.inspectorBody {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  padding: var(--space-3);
+  box-sizing: border-box;
+}

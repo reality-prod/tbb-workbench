@@ -1,0 +1,41 @@
+[config]
+skip_core_tasks = true
+default_to_workspace = false  
+# 1. Main pipeline orchestration
+[tasks.build-dmg]
+description = "Compiles frontend, runs raw Tauri build, strips/packs binary, and outputs the final DMG bundle."
+dependencies = [
+    "cargo-tauri-compile",
+    "minify-binary",
+    "bundle-dmg"
+]
+# 3. Compile the raw binary *without* triggering the default bundle process
+[tasks.cargo-tauri-compile]
+description = "Compiles the Tauri application binary without bundling"
+command = "npm"
+args = ["run", "tauri", "build", "--", "--no-bundle"]
+
+# 4. Strip symbols out of the freshly compiled target binary
+[tasks.minify-binary]
+description = "Strips debug information from the raw compiled binary"
+dependencies = ["cargo-tauri-compile"]
+script = '''
+#!/usr/bin/env bash
+BINARY_PATH="target/release/tbb-workbench"
+
+if [ -f "$BINARY_PATH" ]; then
+    echo "Stripping symbols from raw binary: $BINARY_PATH"
+    strip -S -x "$BINARY_PATH"
+else
+    echo "Error: Binary not found at $BINARY_PATH"
+    exit 1
+fi
+'''
+
+
+# 6. Tell Tauri to wrap the newly obfuscated and tiny binary into a DMG installer
+[tasks.bundle-dmg]
+description = "Triggers Tauri bundler to pack the minified binary into an Apple Disk Image (.dmg)"
+command = "npm"
+args = ["run", "tauri", "bundle", "--", "--bundles", "dmg"]
+

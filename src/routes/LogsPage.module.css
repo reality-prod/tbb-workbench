@@ -1,0 +1,159 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.diskUsage {
+  font-size: var(--text-label-tiny);
+  color: var(--text-secondary);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.empty {
+  color: var(--text-secondary);
+  font-size: var(--text-body-tiny);
+}
+
+.layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-4);
+  min-height: 500px;
+}
+
+.historyColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  overflow-y: auto;
+}
+
+.historyRow {
+  text-align: left;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.selected {
+  border-color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.historyTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.historyLabel {
+  font-weight: 600;
+  font-size: var(--text-label-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.historyMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-label-tiny);
+  color: var(--text-secondary);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.viewerColumn {
+  overflow-y: auto;
+}
+
+.metaDl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-body-tiny);
+  margin: 0;
+}
+
+.metaDl dt {
+  color: var(--text-secondary);
+}
+.metaDl dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.logToolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.logFilter {
+  flex: 1;
+  font-size: var(--text-body-tiny);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+.wrapToggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-label-tiny);
+  color: var(--text-secondary);
+}
+
+.copyAll {
+  background: transparent;
+  border: none;
+  color: var(--accent-primary);
+  font-size: var(--text-label-tiny);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logBox,
+.logBoxWrap {
+  background: #15111c;
+  color: #f5f0f8;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-body-tiny);
+  max-height: 480px;
+  overflow: auto;
+  margin: 0;
+}
+
+.logBox {
+  white-space: pre;
+}
+
+.logBoxWrap {
+  white-space: pre-wrap;
+}
